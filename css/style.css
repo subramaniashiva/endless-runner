@@ -1,0 +1,21 @@
+#play-area {
+  background: url(../img/bg.png);
+  background-repeat: repeat-x;
+  width: 1200px;
+  height: 400px;
+  position: relative;
+}
+#player {
+  position: absolute;
+  color: #fff;
+  top: 50%;
+  left: 5%;
+  font-size: 30px;
+}
+.obstacle {
+  position: absolute;
+  left: 90%;
+  top: 50%;
+  color: #fff;
+  font-size: 30px;
+}
