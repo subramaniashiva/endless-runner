@@ -3,12 +3,13 @@
     var dPlayArea = document.getElementById('play-area'),
         dStart = document.getElementById('start'),
         dInfo = document.getElementById('info'),
-        dPlayer = document.getElementById('player');
+        dPlayer = document.getElementById('player'),
+        dCurrentScore = document.getElementById('score');
     // Creating variables to store intervals used across
     var bgInterval, playerInterval, gameInterval, obstacleInterval = [];
     // Flag to determine whether the game is over
-    var gameOver = false;
-    // Getting the computed style of players and storing it
+    var gameOver = false, score = 0;
+    // Getting the computed style of player and storing it
     var playerStyle = getComputedStyle(dPlayer, null);
     var playerLeft = playerStyle.getPropertyValue('left');
     var playerWidth = playerStyle.getPropertyValue('width');
@@ -58,6 +59,8 @@
             oldObstacles[0].parentNode.removeChild(oldObstacles[0]);
         }
         dPlayer.style.top = '50%';
+        dCurrentScore.innerHTML = '0';
+        score = 0;
     }
     // Function to create obstacles
     function createObstacles() {
@@ -66,7 +69,7 @@
             obstacle.innerHTML = 'O';
             obstacle.className += 'obstacle';
             dPlayArea.appendChild(obstacle);
-            var left = '90';
+            var left = '95';
             var interval = setInterval(function() {
                 if (left > -2) {
                     left -= 1;
@@ -81,7 +84,7 @@
                     obstacleTop = parseInt(obstacleTop, 10);
                     obstacleLeft = parseInt(obstacleLeft, 10);
                     if (obstacleLeft >= playerLeft && obstacleLeft <= playerWidth && playerTop + playerHeight >= obstacleTop) {
-                        alert('game over');
+                        alert('Game Over\nYou scored ' + score);
                         dInfo.style.display = 'block';
                         for (var i in obstacleInterval) {
                             clearInterval(obstacleInterval[i]);
@@ -94,8 +97,10 @@
                     }
                 } else {
                     clearInterval(interval);
+                    score++;
+                    dCurrentScore.innerHTML = score;
                 }
-            }, 120);
+            }, 100);
             obstacleInterval.push(interval);
         }
     }
