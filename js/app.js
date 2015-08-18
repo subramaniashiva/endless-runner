@@ -64,6 +64,7 @@
         dPlayer.style.top = '50%';
         dCurrentScore.innerHTML = '0';
         score = 0;
+        readyToJump = true;
     }
     // Function to create obstacles
     function createObstacles() {
