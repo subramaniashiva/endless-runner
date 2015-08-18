@@ -28,10 +28,12 @@
             dPlayArea.style.backgroundPosition = x + 'px 0px';
         }, 60);
     }
+    var readyToJump = true;
     // Function which listens to space bar and changes the position of player
     window.addEventListener('keypress', function(event) {
         var topVal, goingUp;
-        if (event.which === 32) {
+        if (event.which === 32 && readyToJump) {
+            readyToJump = false;
             topVal = 50;
             goingUp = true;
             dPlayer.style.top = topVal + '%';
@@ -47,6 +49,7 @@
                     dPlayer.style.top = topVal + '%';
                     if (topVal >= 50) {
                         clearInterval(playerInterval);
+                        readyToJump = true;
                     }
                 }
             }, 30);
