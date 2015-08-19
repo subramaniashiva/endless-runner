@@ -61,7 +61,9 @@
         while (oldObstacles[0]) {
             oldObstacles[0].parentNode.removeChild(oldObstacles[0]);
         }
+        // Reset the player position
         dPlayer.style.top = '50%';
+        // Set current score to zero
         dCurrentScore.innerHTML = '0';
         score = 0;
         readyToJump = true;
